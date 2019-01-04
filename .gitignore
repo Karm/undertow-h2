@@ -1,4 +1,5 @@
 .idea/
 dependency-reduced-pom.xml
 target
-undertowproxy.iml
+*.iml
+
