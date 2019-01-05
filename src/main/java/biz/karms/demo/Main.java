@@ -20,6 +20,7 @@ package biz.karms.demo;
 import io.undertow.Undertow;
 import io.undertow.UndertowOptions;
 import io.undertow.util.Headers;
+import org.jboss.logmanager.LogManager;
 
 import javax.net.ssl.KeyManager;
 import javax.net.ssl.KeyManagerFactory;
@@ -50,6 +51,7 @@ public class Main {
 
     public static void main(final String[] args) throws Exception {
         System.setProperty("java.util.logging.manager", "org.jboss.logmanager.LogManager");
+        LogManager.getLogManager().readConfiguration(Main.class.getClassLoader().getResourceAsStream("logging.properties"));
         LOGGER.log(Level.INFO, "Constructing TLS context...");
         final SSLContext sslContext = createSSLContext(loadKeyStore(pathToKeystore), loadKeyStore(pathToTrustStore));
         LOGGER.log(Level.INFO, "Configuring server...");
