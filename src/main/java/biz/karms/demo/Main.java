@@ -58,6 +58,8 @@ public class Main {
         final Undertow server = Undertow.builder()
                 .setServerOption(UndertowOptions.ENABLE_HTTP2, true)
                 .addHttpsListener(bindPort, bindAddress, sslContext)
+                .setServerOption(UndertowOptions.IDLE_TIMEOUT, 20000)
+                .setServerOption(UndertowOptions.NO_REQUEST_TIMEOUT, 20000)
                 .setHandler(exchange -> {
                     exchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "text/plain");
                     exchange.getResponseSender().send("Hello, client!");
